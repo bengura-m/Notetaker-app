@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Note Taker App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h2>Note Taker App</h2>
+        <br>
+        <form action="/api/notes" method="POST">
+            <div class="form-group">
+                <textarea class="form-control" type="text" name="title" id="title" placeholder="Add new Note" required></textarea>
+                <br>
+                <button class="btn btn-success" type="submit">Add Note</button>
+            </div>
+    </div>
+    </form>
+
+    <!-- create a table for the inputted notes -->
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Notes</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% note.map((i, index) => { %>
+            <tr>
+                <td><%= i.title %></td>
+                <td>
+                    <form action='api/notes/<%= i.id %>' method="POST">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
